@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+body {
+  background-image: url('./tv-room.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: grid;
+  justify-content: center
+}
+
+.container {
+  backdrop-filter: blur(3px);
+  display: grid;
+  width: fit-content;
+  grid-template-rows: auto;
+  color: white;
+  /* border: .1rem solid black; */
+  box-shadow: 0rem 0rem 1rem black;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 5rem;
+}
+  
+label {
+  margin-bottom: .2rem;
+  text-shadow: 0px 0px 10px black;
+}
+
+input {
+  margin-bottom: .6rem;
+}
+
+button {
+  justify-self: center;
+  align-self: center;
+  width: 10rem;
+}
+
+a {
+  justify-self: center;
+  font-size: .9rem;
+  margin-top: 6rem;
+}
