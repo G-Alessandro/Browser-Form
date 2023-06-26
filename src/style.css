@@ -20,7 +20,6 @@ body {
   width: fit-content;
   grid-template-rows: auto;
   color: white;
-  /* border: .1rem solid black; */
   box-shadow: 0rem 0rem 1rem black;
   border-radius: 12px;
   padding: 2rem;
@@ -32,14 +31,44 @@ label {
   text-shadow: 0px 0px 10px black;
 }
 
-input {
+input, select {
+  width: 20rem;
+  text-indent: 1rem;
+  background-color: white;
+  border:.2rem solid rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 0rem 0rem .2rem black;
   margin-bottom: .6rem;
+  outline: none;
+}
+
+input:focus:invalid {
+  border-color: #900;
+  box-shadow: 0rem 0rem .2rem #900;
+}
+
+input:valid {
+  border-color: green;
+  box-shadow: 0rem 0rem .2rem green;
+}
+
+.input-error {
+  font-size: 1rem;
+  color: white;
+  background-color: rgb(228, 85, 85);
+  border-radius: 0 0 5px 5px;
+  padding: .2rem;
+  margin-top: -.6rem;
+  box-sizing: border-box;
 }
 
 button {
+  width: 10rem;
   justify-self: center;
   align-self: center;
-  width: 10rem;
+  color: white;
+  border-radius: 5px;
+  background-color: #2e90c9;
 }
 
 a {

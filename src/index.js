@@ -1,8 +1,11 @@
 import './style.css';
+import inputEvent from './function';
+import countryOptions from './country-list';
 
 const body = document.getElementsByTagName('body')[0];
 
 const form = document.createElement('form');
+form.setAttribute('novalidate', '');
 body.appendChild(form);
 
 const container = document.createElement('div');
@@ -17,9 +20,20 @@ emailLabel.innerText = 'Email :';
 
 const emailInput = document.createElement('input');
 emailInput.setAttribute('type', 'email');
-emailLabel.setAttribute('id', 'email');
-emailLabel.setAttribute('name', 'email');
+emailInput.setAttribute('id', 'email');
+emailInput.setAttribute('name', 'email');
+emailInput.setAttribute('required', '');
 container.appendChild(emailInput);
+
+const emailError = document.createElement('div');
+emailError.setAttribute('id', 'input-error');
+emailError.setAttribute('aria-live', 'polite');
+container.appendChild(emailError);
+
+const email = document.getElementById('email');
+email.addEventListener('input', () => {
+  inputEvent(email, emailError);
+});
 
 // Country
 const countryLabel = document.createElement('label');
@@ -27,11 +41,22 @@ countryLabel.setAttribute('for', 'country');
 container.appendChild(countryLabel);
 countryLabel.innerText = 'Country :';
 
-const countryInput = document.createElement('input');
-countryInput.setAttribute('type', 'country');
+const countryInput = document.createElement('select');
 countryInput.setAttribute('id', 'country');
 countryInput.setAttribute('name', 'country');
+countryInput.setAttribute('required', '');
 container.appendChild(countryInput);
+countryOptions();
+
+// const countryError = document.createElement('div');
+// countryError.setAttribute('id', 'input-error');
+// countryError.setAttribute('aria-live', 'polite');
+// container.appendChild(countryError);
+
+// const country = document.getElementById('email');
+// country.addEventListener('input', () => {
+//   inputEvent(country, countryError);
+// });
 
 // Zip code
 const zipCodeLabel = document.createElement('label');
@@ -43,6 +68,7 @@ const zipCodeInput = document.createElement('input');
 zipCodeInput.setAttribute('type', 'text');
 zipCodeInput.setAttribute('id', 'zip');
 zipCodeInput.setAttribute('name', 'zip');
+zipCodeInput.setAttribute('required', '');
 container.appendChild(zipCodeInput);
 
 // Password
@@ -55,6 +81,9 @@ const passwordInput = document.createElement('input');
 passwordInput.setAttribute('type', 'password');
 passwordInput.setAttribute('id', 'password');
 passwordInput.setAttribute('name', 'password');
+passwordInput.setAttribute('minlength', '8');
+passwordInput.setAttribute('maxlength', '16');
+passwordInput.setAttribute('required', '');
 container.appendChild(passwordInput);
 
 // Confirm Password
@@ -67,6 +96,9 @@ const confirmPasswordInput = document.createElement('input');
 confirmPasswordInput.setAttribute('type', 'password');
 confirmPasswordInput.setAttribute('id', 'confirm-password');
 confirmPasswordInput.setAttribute('name', 'confirm-password');
+confirmPasswordInput.setAttribute('minlength', '8');
+confirmPasswordInput.setAttribute('maxlength', '16');
+confirmPasswordInput.setAttribute('required', '');
 container.appendChild(confirmPasswordInput);
 
 // Submit button
@@ -74,6 +106,13 @@ const submitBtn = document.createElement('button');
 submitBtn.setAttribute('type', 'submit');
 container.appendChild(submitBtn);
 submitBtn.innerText = 'Confirm';
+
+// form.addEventListener('submit', (e) => {
+// if (!email.validity.valid) {
+//   showError(email, emailError);
+// }
+// e.preventDefault();
+// });
 
 // Background credit
 const backgroundCredit = document.createElement('a');
