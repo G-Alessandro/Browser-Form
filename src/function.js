@@ -14,11 +14,18 @@ function countryError(input, inputError) {
   }
 }
 
-// const email = document.getElementById('email');
+function zipCodeError(input, inputError) {
+  const error = inputError;
+  if (input.validity.valueMissing) {
+    error.innerText = 'You need to enter a Zip Code';
+  } else if (input.validity.tooShort) {
+    error.innerText = 'Must contain at least 5 characters';
+  }
+}
+
 function inputEvent(input, inputError) {
   const error = inputError;
   if (input.validity.valid) {
-    console.log('valid');
     error.innerText = '';
     error.classList.remove('input-error');
   } else {
@@ -28,6 +35,9 @@ function inputEvent(input, inputError) {
     }
     if (input.name === 'country') {
       countryError(input, inputError);
+    }
+    if (input.name === 'zip') {
+      zipCodeError(input, inputError);
     }
   }
 }

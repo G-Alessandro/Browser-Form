@@ -22,6 +22,7 @@ const emailInput = document.createElement('input');
 emailInput.setAttribute('type', 'email');
 emailInput.setAttribute('id', 'email');
 emailInput.setAttribute('name', 'email');
+emailInput.setAttribute('autocomplete', 'email');
 emailInput.setAttribute('required', '');
 container.appendChild(emailInput);
 
@@ -40,11 +41,12 @@ countryLabel.setAttribute('for', 'country');
 container.appendChild(countryLabel);
 countryLabel.innerText = 'Country :';
 
-const countryInput = document.createElement('select');
-countryInput.setAttribute('id', 'country');
-countryInput.setAttribute('name', 'country');
-countryInput.setAttribute('required', '');
-container.appendChild(countryInput);
+const countrySelect = document.createElement('select');
+countrySelect.setAttribute('id', 'country');
+countrySelect.setAttribute('name', 'country');
+countrySelect.setAttribute('autocomplete', 'country-name');
+countrySelect.setAttribute('required', '');
+container.appendChild(countrySelect);
 countryOptions();
 
 const countryError = document.createElement('div');
@@ -52,9 +54,8 @@ countryError.setAttribute('id', 'country-error');
 countryError.setAttribute('aria-live', 'polite');
 container.appendChild(countryError);
 
-const country = document.getElementById('email');
-country.addEventListener('select', () => {
-  inputEvent(countryInput, countryError);
+countrySelect.addEventListener('click', () => {
+  inputEvent(countrySelect, countryError);
 });
 
 // Zip code
@@ -67,17 +68,22 @@ const zipCodeInput = document.createElement('input');
 zipCodeInput.setAttribute('type', 'text');
 zipCodeInput.setAttribute('id', 'zip');
 zipCodeInput.setAttribute('name', 'zip');
+zipCodeInput.setAttribute('autocomplete', 'postal-code');
+zipCodeInput.setAttribute('minlength', '5');
+zipCodeInput.setAttribute('maxlength', '9');
+zipCodeInput.setAttribute('size', '9');
 zipCodeInput.setAttribute('required', '');
 container.appendChild(zipCodeInput);
 
 const zipCodeError = document.createElement('div');
-zipCodeError.setAttribute('id', 'email-error');
+zipCodeError.setAttribute('id', 'zip-error');
 zipCodeError.setAttribute('aria-live', 'polite');
 container.appendChild(zipCodeError);
 
 zipCodeInput.addEventListener('input', () => {
   inputEvent(zipCodeInput, zipCodeError);
 });
+
 // Password
 const passwordLabel = document.createElement('label');
 passwordLabel.setAttribute('for', 'password');
@@ -88,6 +94,7 @@ const passwordInput = document.createElement('input');
 passwordInput.setAttribute('type', 'password');
 passwordInput.setAttribute('id', 'password');
 passwordInput.setAttribute('name', 'password');
+passwordInput.setAttribute('autocomplete', 'new-password');
 passwordInput.setAttribute('minlength', '8');
 passwordInput.setAttribute('maxlength', '16');
 passwordInput.setAttribute('required', '');
@@ -103,6 +110,7 @@ const confirmPasswordInput = document.createElement('input');
 confirmPasswordInput.setAttribute('type', 'password');
 confirmPasswordInput.setAttribute('id', 'confirm-password');
 confirmPasswordInput.setAttribute('name', 'confirm-password');
+confirmPasswordInput.setAttribute('autocomplete', 'new-password');
 confirmPasswordInput.setAttribute('minlength', '8');
 confirmPasswordInput.setAttribute('maxlength', '16');
 confirmPasswordInput.setAttribute('required', '');

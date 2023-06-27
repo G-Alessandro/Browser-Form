@@ -45,14 +45,14 @@ input, select {
 
 input:focus:invalid, 
 select:focus:invalid {
-  border-color: #900;
-  box-shadow: 0rem 0rem .2rem #900;
+  border-color: rgb(228, 85, 85);
+  box-shadow: 0rem 0rem .2rem rgb(228, 85, 85);
 }
 
 input:valid, 
 select:valid {
-  border-color: green;
-  box-shadow: 0rem 0rem .2rem green;
+  border-color: rgb(85, 228, 104);
+  box-shadow: 0rem 0rem .2rem rgb(85, 228, 104);
 }
 
 .input-error {
