@@ -1,5 +1,5 @@
 import './style.css';
-import inputEvent from './function';
+import { inputEvent, addEyeBtn } from './function';
 import countryOptions from './country-list';
 
 const body = document.getElementsByTagName('body')[0];
@@ -31,9 +31,9 @@ emailError.setAttribute('id', 'email-error');
 emailError.setAttribute('aria-live', 'polite');
 container.appendChild(emailError);
 
-emailInput.addEventListener('input', () => {
+['click', 'input', 'keydown'].forEach((event) => emailInput.addEventListener(event, () => {
   inputEvent(emailInput, emailError);
-});
+}));
 
 // Country
 const countryLabel = document.createElement('label');
@@ -54,9 +54,9 @@ countryError.setAttribute('id', 'country-error');
 countryError.setAttribute('aria-live', 'polite');
 container.appendChild(countryError);
 
-countrySelect.addEventListener('click', () => {
+['click', 'change', 'keydown'].forEach((event) => countrySelect.addEventListener(event, () => {
   inputEvent(countrySelect, countryError);
-});
+}));
 
 // Zip code
 const zipCodeLabel = document.createElement('label');
@@ -71,7 +71,6 @@ zipCodeInput.setAttribute('name', 'zip');
 zipCodeInput.setAttribute('autocomplete', 'postal-code');
 zipCodeInput.setAttribute('minlength', '5');
 zipCodeInput.setAttribute('maxlength', '9');
-zipCodeInput.setAttribute('size', '9');
 zipCodeInput.setAttribute('required', '');
 container.appendChild(zipCodeInput);
 
@@ -80,9 +79,9 @@ zipCodeError.setAttribute('id', 'zip-error');
 zipCodeError.setAttribute('aria-live', 'polite');
 container.appendChild(zipCodeError);
 
-zipCodeInput.addEventListener('input', () => {
+['click', 'input', 'keydown'].forEach((event) => zipCodeInput.addEventListener(event, () => {
   inputEvent(zipCodeInput, zipCodeError);
-});
+}));
 
 // Password
 const passwordLabel = document.createElement('label');
@@ -100,6 +99,8 @@ passwordInput.setAttribute('maxlength', '16');
 passwordInput.setAttribute('required', '');
 container.appendChild(passwordInput);
 
+addEyeBtn(passwordLabel, passwordInput);
+
 // Confirm Password
 const confirmPasswordLabel = document.createElement('label');
 confirmPasswordLabel.setAttribute('for', 'confirm-password');
@@ -115,6 +116,8 @@ confirmPasswordInput.setAttribute('minlength', '8');
 confirmPasswordInput.setAttribute('maxlength', '16');
 confirmPasswordInput.setAttribute('required', '');
 container.appendChild(confirmPasswordInput);
+
+addEyeBtn(confirmPasswordLabel, confirmPasswordInput);
 
 // Submit button
 const submitBtn = document.createElement('button');

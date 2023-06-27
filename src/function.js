@@ -23,6 +23,23 @@ function zipCodeError(input, inputError) {
   }
 }
 
+function addEyeBtn(parent, input) {
+  const button = document.createElement('button');
+  button.setAttribute('type', 'button');
+  button.classList.add('show-password');
+  parent.appendChild(button);
+  const inputTarget = input;
+  button.addEventListener('click', () => {
+    if (inputTarget.type === 'password') {
+      inputTarget.type = 'text';
+      button.style.backgroundImage = 'url(./eye-off-outline.svg)';
+    } else {
+      inputTarget.type = 'password';
+      button.style.backgroundImage = 'url(./eye-outline.svg)';
+    }
+  });
+}
+
 function inputEvent(input, inputError) {
   const error = inputError;
   if (input.validity.valid) {
@@ -42,4 +59,4 @@ function inputEvent(input, inputError) {
   }
 }
 
-export default inputEvent;
+export { inputEvent, addEyeBtn };
