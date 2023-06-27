@@ -7,6 +7,7 @@
 }
 
 body {
+  background-color: #3695b1;
   background-image: url('./tv-room.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
@@ -42,12 +43,14 @@ input, select {
   outline: none;
 }
 
-input:focus:invalid {
+input:focus:invalid, 
+select:focus:invalid {
   border-color: #900;
   box-shadow: 0rem 0rem .2rem #900;
 }
 
-input:valid {
+input:valid, 
+select:valid {
   border-color: green;
   box-shadow: 0rem 0rem .2rem green;
 }
