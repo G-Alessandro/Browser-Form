@@ -18,18 +18,22 @@ emailLabel.setAttribute('for', 'email');
 container.appendChild(emailLabel);
 emailLabel.innerText = 'Email :';
 
+const emailContainer = document.createElement('div');
+emailContainer.classList.add('input-container');
+container.appendChild(emailContainer);
+
 const emailInput = document.createElement('input');
 emailInput.setAttribute('type', 'email');
 emailInput.setAttribute('id', 'email');
 emailInput.setAttribute('name', 'email');
 emailInput.setAttribute('autocomplete', 'email');
 emailInput.setAttribute('required', '');
-container.appendChild(emailInput);
+emailContainer.appendChild(emailInput);
 
 const emailError = document.createElement('div');
 emailError.setAttribute('id', 'email-error');
 emailError.setAttribute('aria-live', 'polite');
-container.appendChild(emailError);
+emailContainer.appendChild(emailError);
 
 ['click', 'input', 'keydown'].forEach((event) => emailInput.addEventListener(event, () => {
   inputEvent(emailInput, emailError);
@@ -41,18 +45,22 @@ countryLabel.setAttribute('for', 'country');
 container.appendChild(countryLabel);
 countryLabel.innerText = 'Country :';
 
+const countryContainer = document.createElement('div');
+countryContainer.classList.add('input-container');
+container.appendChild(countryContainer);
+
 const countrySelect = document.createElement('select');
 countrySelect.setAttribute('id', 'country');
 countrySelect.setAttribute('name', 'country');
 countrySelect.setAttribute('autocomplete', 'country-name');
 countrySelect.setAttribute('required', '');
-container.appendChild(countrySelect);
+countryContainer.appendChild(countrySelect);
 countryOptions();
 
 const countryError = document.createElement('div');
 countryError.setAttribute('id', 'country-error');
 countryError.setAttribute('aria-live', 'polite');
-container.appendChild(countryError);
+countryContainer.appendChild(countryError);
 
 ['click', 'change', 'keydown'].forEach((event) => countrySelect.addEventListener(event, () => {
   inputEvent(countrySelect, countryError);
@@ -64,6 +72,10 @@ zipCodeLabel.setAttribute('for', 'zip');
 container.appendChild(zipCodeLabel);
 zipCodeLabel.innerText = 'Zip code :';
 
+const zipCodeContainer = document.createElement('div');
+zipCodeContainer.classList.add('input-container');
+container.appendChild(zipCodeContainer);
+
 const zipCodeInput = document.createElement('input');
 zipCodeInput.setAttribute('type', 'text');
 zipCodeInput.setAttribute('id', 'zip');
@@ -72,12 +84,12 @@ zipCodeInput.setAttribute('autocomplete', 'postal-code');
 zipCodeInput.setAttribute('minlength', '5');
 zipCodeInput.setAttribute('maxlength', '9');
 zipCodeInput.setAttribute('required', '');
-container.appendChild(zipCodeInput);
+zipCodeContainer.appendChild(zipCodeInput);
 
 const zipCodeError = document.createElement('div');
 zipCodeError.setAttribute('id', 'zip-error');
 zipCodeError.setAttribute('aria-live', 'polite');
-container.appendChild(zipCodeError);
+zipCodeContainer.appendChild(zipCodeError);
 
 ['click', 'input', 'keydown'].forEach((event) => zipCodeInput.addEventListener(event, () => {
   inputEvent(zipCodeInput, zipCodeError);
@@ -89,6 +101,14 @@ passwordLabel.setAttribute('for', 'password');
 container.appendChild(passwordLabel);
 passwordLabel.innerText = 'Password :';
 
+const passwordShowBtnContainer = document.createElement('div');
+passwordShowBtnContainer.classList.add('password-show-input-container');
+container.appendChild(passwordShowBtnContainer);
+
+const passwordContainer = document.createElement('div');
+passwordContainer.classList.add('input-container');
+passwordShowBtnContainer.appendChild(passwordContainer);
+
 const passwordInput = document.createElement('input');
 passwordInput.setAttribute('type', 'password');
 passwordInput.setAttribute('id', 'password');
@@ -98,14 +118,12 @@ passwordInput.setAttribute('minlength', '8');
 passwordInput.setAttribute('maxlength', '16');
 passwordInput.setAttribute('pattern', '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Z0-9]+$/');
 passwordInput.setAttribute('required', '');
-container.appendChild(passwordInput);
-
-addShowPasswordBtn(passwordLabel, passwordInput);
+passwordContainer.appendChild(passwordInput);
 
 // Error container
-const errorContainer = document.createElement('div');
-errorContainer.classList.add('error-container');
-container.appendChild(errorContainer);
+const passwordErrorContainer = document.createElement('div');
+passwordErrorContainer.classList.add('password-error-container');
+passwordContainer.appendChild(passwordErrorContainer);
 // All type of error
 const enterPasswordError = document.createElement('div');
 enterPasswordError.setAttribute('id', 'enter-password-error');
@@ -113,7 +131,7 @@ enterPasswordError.classList.add('input-error');
 enterPasswordError.setAttribute('aria-live', 'polite');
 enterPasswordError.style.display = 'none';
 enterPasswordError.innerText = 'You need to enter a Password';
-errorContainer.appendChild(enterPasswordError);
+passwordErrorContainer.appendChild(enterPasswordError);
 
 const lowercaseError = document.createElement('div');
 lowercaseError.setAttribute('id', 'lowercase-error');
@@ -121,7 +139,7 @@ lowercaseError.classList.add('input-error');
 lowercaseError.setAttribute('aria-live', 'polite');
 lowercaseError.style.display = 'none';
 lowercaseError.innerText = 'It must have at least one lowercase';
-errorContainer.appendChild(lowercaseError);
+passwordErrorContainer.appendChild(lowercaseError);
 
 const uppercaseError = document.createElement('div');
 uppercaseError.setAttribute('id', 'uppercase-error');
@@ -129,7 +147,7 @@ uppercaseError.classList.add('input-error');
 uppercaseError.setAttribute('aria-live', 'polite');
 uppercaseError.style.display = 'none';
 uppercaseError.innerText = 'It must have at least one uppercase';
-errorContainer.appendChild(uppercaseError);
+passwordErrorContainer.appendChild(uppercaseError);
 
 const numberError = document.createElement('div');
 numberError.setAttribute('id', 'numbers-error');
@@ -137,7 +155,7 @@ numberError.classList.add('input-error');
 numberError.setAttribute('aria-live', 'polite');
 numberError.style.display = 'none';
 numberError.innerText = 'It must have at least one numbers';
-errorContainer.appendChild(numberError);
+passwordErrorContainer.appendChild(numberError);
 
 const tooShortError = document.createElement('div');
 tooShortError.setAttribute('id', 'too-short-error');
@@ -145,7 +163,9 @@ tooShortError.classList.add('input-error');
 tooShortError.setAttribute('aria-live', 'polite');
 tooShortError.style.display = 'none';
 tooShortError.innerText = 'Must have at least 8 characters';
-errorContainer.appendChild(tooShortError);
+passwordErrorContainer.appendChild(tooShortError);
+
+addShowPasswordBtn(passwordShowBtnContainer, passwordInput);
 
 ['click', 'input', 'keydown'].forEach((event) => passwordInput.addEventListener(event, () => {
   passwordError(passwordInput);
@@ -157,6 +177,14 @@ confirmPasswordLabel.setAttribute('for', 'confirm-password');
 container.appendChild(confirmPasswordLabel);
 confirmPasswordLabel.innerText = 'Confirm Password :';
 
+const passConfShowBtnContainer = document.createElement('div');
+passConfShowBtnContainer.classList.add('password-show-input-container');
+container.appendChild(passConfShowBtnContainer);
+
+const passConContainer = document.createElement('div');
+passConContainer.classList.add('input-container');
+passConfShowBtnContainer.appendChild(passConContainer);
+
 const confirmPasswordInput = document.createElement('input');
 confirmPasswordInput.setAttribute('type', 'password');
 confirmPasswordInput.setAttribute('id', 'confirm-password');
@@ -165,14 +193,14 @@ confirmPasswordInput.setAttribute('autocomplete', 'new-password');
 confirmPasswordInput.setAttribute('minlength', '8');
 confirmPasswordInput.setAttribute('maxlength', '16');
 confirmPasswordInput.setAttribute('required', '');
-container.appendChild(confirmPasswordInput);
-
-addShowPasswordBtn(confirmPasswordLabel, confirmPasswordInput);
+passConContainer.appendChild(confirmPasswordInput);
 
 const confirmPasswordError = document.createElement('div');
 confirmPasswordError.setAttribute('id', 'zip-error');
 confirmPasswordError.setAttribute('aria-live', 'polite');
-container.appendChild(confirmPasswordError);
+passConContainer.appendChild(confirmPasswordError);
+
+addShowPasswordBtn(passConfShowBtnContainer, confirmPasswordInput);
 
 ['click', 'input', 'keydown'].forEach((event) => confirmPasswordInput.addEventListener(event, () => {
   inputEvent(confirmPasswordInput, confirmPasswordError);

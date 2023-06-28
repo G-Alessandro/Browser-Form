@@ -32,21 +32,35 @@ label {
   text-shadow: 0px 0px 10px black;
 }
 
+.input-container {
+  width: 15rem;
+  margin-bottom: .3rem;
+  align-content: center;
+}
+
+.password-show-input-container {
+  display: flex;
+  width: fit-content;
+  margin-bottom: .3rem;
+  align-content: center;
+}
+
 input, select {
-  width: 20rem;
+  width: 100%;
   text-indent: 1rem;
   background-color: white;
   border:.2rem solid rgb(255, 255, 255);
   border-radius: 5px;
   box-shadow: 0rem 0rem .2rem black;
-  margin-bottom: .6rem;
   outline: none;
+  box-sizing: border-box;
 }
 
 input:focus:invalid, 
 select:focus:invalid {
   border-color: rgb(228, 85, 85);
   box-shadow: 0rem 0rem .2rem rgb(228, 85, 85);
+  border-radius: 5px 5px 0 0;
 }
 
 input:valid, 
@@ -55,26 +69,24 @@ select:valid {
   box-shadow: 0rem 0rem .2rem rgb(85, 228, 104);
 }
 
-#password {
-  position: relative;
-}
-
-.error-container {
-  position: absolute;
-  top: 60%;
-  right: -50%;
-  margin-top: -.6rem;
+.password-error-container {
   margin-bottom: .1rem;
   border-radius: 0 0 5px 5px;
 }
 
 .input-error {
+  width: 100%;
   text-align: center;
   font-size: 1rem;
   color: white;
   background-color: rgb(228, 85, 85);
   padding: .2rem;
+  box-sizing: border-box;
 }
+
+/* .input-error:last-child {
+  border-radius: 0 0 5px 5px;
+} */
 
 button[type='submit'] {
   width: 10rem;
@@ -89,9 +101,11 @@ button[type='submit'] {
   height: 2rem;
   width: 2rem;
   background-image: url(./eye-outline.svg);
+  background-repeat: no-repeat;
   box-shadow: 0rem 0rem .2rem black;
   border: none;
   border-radius: 5px;
+  margin-left: .1rem;
 }
 
 a {
