@@ -15,6 +15,15 @@ body {
   justify-content: center
 }
 
+.title {
+  justify-self: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 900;
+  text-shadow: 0rem 0rem 1rem black;
+  margin-top: 1rem;
+}
+
 .container {
   backdrop-filter: blur(3px);
   display: grid;
@@ -24,7 +33,7 @@ body {
   box-shadow: 0rem 0rem 1rem black;
   border-radius: 12px;
   padding: 2rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
   
 label {
@@ -94,8 +103,14 @@ button[type='submit'] {
   justify-self: center;
   align-self: center;
   color: white;
+  border: .1rem solid #029bf4;
   border-radius: 5px;
-  background-color: #2e90c9;
+  background-color: #2fa7ed;
+}
+
+button[type='submit']:hover {
+  border: .1rem solid #0378bb;
+  background-color: #0378bb;
 }
 
 .show-password {

@@ -6,6 +6,11 @@ import {
 
 const body = document.getElementsByTagName('body')[0];
 
+const title = document.createElement('div');
+title.classList.add('title');
+body.appendChild(title);
+title.innerText = 'Form Validation';
+
 const form = document.createElement('form');
 form.setAttribute('novalidate', '');
 body.appendChild(form);
@@ -242,5 +247,3 @@ backgroundCredit.setAttribute('href', 'https://www.freepik.com/free-vector/livin
 backgroundCredit.setAttribute('target', '_blank');
 body.appendChild(backgroundCredit);
 backgroundCredit.innerText = 'Background Image by upklyak on Freepik';
-
-console.log('test');
