@@ -23,7 +23,48 @@ function zipCodeError(input, inputError) {
   }
 }
 
-function addEyeBtn(parent, input) {
+function passwordError(input) {
+  const lowercase = /[a-z]/g;
+  const uppercase = /[A-Z]/g;
+  const numbers = /[0-9]/g;
+
+  const enterPasswordError = document.getElementById('enter-password-error');
+  if (input.validity.valueMissing) {
+    enterPasswordError.style.display = 'block';
+  } else {
+    enterPasswordError.style.display = 'none';
+  }
+
+  const lowercaseError = document.getElementById('lowercase-error');
+  if (!input.value.match(lowercase)) {
+    lowercaseError.style.display = 'block';
+  } else {
+    lowercaseError.style.display = 'none';
+  }
+
+  const uppercaseError = document.getElementById('uppercase-error');
+  if (!input.value.match(uppercase)) {
+    uppercaseError.style.display = 'block';
+  } else {
+    uppercaseError.style.display = 'none';
+  }
+
+  const numberError = document.getElementById('numbers-error');
+  if (!input.value.match(numbers)) {
+    numberError.style.display = 'block';
+  } else {
+    numberError.style.display = 'none';
+  }
+
+  const tooShortError = document.getElementById('too-short-error');
+  if (input.validity.tooShort) {
+    tooShortError.style.display = 'block';
+  } else {
+    tooShortError.style.display = 'none';
+  }
+}
+
+function addShowPasswordBtn(parent, input) {
   const button = document.createElement('button');
   button.setAttribute('type', 'button');
   button.classList.add('show-password');
@@ -59,4 +100,4 @@ function inputEvent(input, inputError) {
   }
 }
 
-export { inputEvent, addEyeBtn };
+export { inputEvent, addShowPasswordBtn, passwordError };

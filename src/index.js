@@ -1,5 +1,5 @@
 import './style.css';
-import { inputEvent, addEyeBtn } from './function';
+import { inputEvent, addShowPasswordBtn, passwordError } from './function';
 import countryOptions from './country-list';
 
 const body = document.getElementsByTagName('body')[0];
@@ -96,10 +96,60 @@ passwordInput.setAttribute('name', 'password');
 passwordInput.setAttribute('autocomplete', 'new-password');
 passwordInput.setAttribute('minlength', '8');
 passwordInput.setAttribute('maxlength', '16');
+passwordInput.setAttribute('pattern', '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Z0-9]+$/');
 passwordInput.setAttribute('required', '');
 container.appendChild(passwordInput);
 
-addEyeBtn(passwordLabel, passwordInput);
+addShowPasswordBtn(passwordLabel, passwordInput);
+
+// Error container
+const errorContainer = document.createElement('div');
+errorContainer.classList.add('error-container');
+container.appendChild(errorContainer);
+// All type of error
+const enterPasswordError = document.createElement('div');
+enterPasswordError.setAttribute('id', 'enter-password-error');
+enterPasswordError.classList.add('input-error');
+enterPasswordError.setAttribute('aria-live', 'polite');
+enterPasswordError.style.display = 'none';
+enterPasswordError.innerText = 'You need to enter a Password';
+errorContainer.appendChild(enterPasswordError);
+
+const lowercaseError = document.createElement('div');
+lowercaseError.setAttribute('id', 'lowercase-error');
+lowercaseError.classList.add('input-error');
+lowercaseError.setAttribute('aria-live', 'polite');
+lowercaseError.style.display = 'none';
+lowercaseError.innerText = 'It must have at least one lowercase';
+errorContainer.appendChild(lowercaseError);
+
+const uppercaseError = document.createElement('div');
+uppercaseError.setAttribute('id', 'uppercase-error');
+uppercaseError.classList.add('input-error');
+uppercaseError.setAttribute('aria-live', 'polite');
+uppercaseError.style.display = 'none';
+uppercaseError.innerText = 'It must have at least one uppercase';
+errorContainer.appendChild(uppercaseError);
+
+const numberError = document.createElement('div');
+numberError.setAttribute('id', 'numbers-error');
+numberError.classList.add('input-error');
+numberError.setAttribute('aria-live', 'polite');
+numberError.style.display = 'none';
+numberError.innerText = 'It must have at least one numbers';
+errorContainer.appendChild(numberError);
+
+const tooShortError = document.createElement('div');
+tooShortError.setAttribute('id', 'too-short-error');
+tooShortError.classList.add('input-error');
+tooShortError.setAttribute('aria-live', 'polite');
+tooShortError.style.display = 'none';
+tooShortError.innerText = 'Must have at least 8 characters';
+errorContainer.appendChild(tooShortError);
+
+['click', 'input', 'keydown'].forEach((event) => passwordInput.addEventListener(event, () => {
+  passwordError(passwordInput);
+}));
 
 // Confirm Password
 const confirmPasswordLabel = document.createElement('label');
@@ -117,7 +167,16 @@ confirmPasswordInput.setAttribute('maxlength', '16');
 confirmPasswordInput.setAttribute('required', '');
 container.appendChild(confirmPasswordInput);
 
-addEyeBtn(confirmPasswordLabel, confirmPasswordInput);
+addShowPasswordBtn(confirmPasswordLabel, confirmPasswordInput);
+
+const confirmPasswordError = document.createElement('div');
+confirmPasswordError.setAttribute('id', 'zip-error');
+confirmPasswordError.setAttribute('aria-live', 'polite');
+container.appendChild(confirmPasswordError);
+
+['click', 'input', 'keydown'].forEach((event) => confirmPasswordInput.addEventListener(event, () => {
+  inputEvent(confirmPasswordInput, confirmPasswordError);
+}));
 
 // Submit button
 const submitBtn = document.createElement('button');

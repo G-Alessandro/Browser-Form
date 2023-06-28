@@ -55,16 +55,25 @@ select:valid {
   box-shadow: 0rem 0rem .2rem rgb(85, 228, 104);
 }
 
+#password {
+  position: relative;
+}
+
+.error-container {
+  position: absolute;
+  top: 60%;
+  right: -50%;
+  margin-top: -.6rem;
+  margin-bottom: .1rem;
+  border-radius: 0 0 5px 5px;
+}
+
 .input-error {
   text-align: center;
   font-size: 1rem;
   color: white;
   background-color: rgb(228, 85, 85);
-  border-radius: 0 0 5px 5px;
   padding: .2rem;
-  margin-top: -.6rem;
-  margin-bottom: .1rem;
-  box-sizing: border-box;
 }
 
 button[type='submit'] {
@@ -88,5 +97,5 @@ button[type='submit'] {
 a {
   justify-self: center;
   font-size: .9rem;
-  margin-top: 6rem;
+  margin-top: 1rem;
 }
