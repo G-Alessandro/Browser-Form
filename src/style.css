@@ -86,6 +86,7 @@ select:valid {
 
 .password-input-error {
   text-align: start;
+  border-top: .1rem solid black;
 }
 
 button[type='submit'] {

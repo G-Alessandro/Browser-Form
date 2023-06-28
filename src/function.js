@@ -73,13 +73,13 @@ function passwordError(input) {
 }
 
 function confirmPassword(inputPassword, inputConfirm) {
-  const confirmPasswordError = document.getElementById('confirm-password-error');
+  const differentPasswordError = document.getElementById('different-password-error');
   const passwordPattern = inputPassword.value;
   inputConfirm.setAttribute('pattern', passwordPattern);
-  if (inputConfirm.validity.patternMismatch) {
-    confirmPasswordError.style.display = 'block';
+  if (inputConfirm.validity.patternMismatch || inputConfirm.value.length === 0) {
+    differentPasswordError.style.display = 'block';
   } else {
-    confirmPasswordError.style.display = 'none';
+    differentPasswordError.style.display = 'none';
   }
 }
 

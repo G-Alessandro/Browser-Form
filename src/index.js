@@ -207,13 +207,13 @@ confirmPasswordInput.setAttribute('maxlength', '16');
 confirmPasswordInput.setAttribute('required', '');
 passConContainer.appendChild(confirmPasswordInput);
 
-const confirmPasswordError = document.createElement('div');
-confirmPasswordError.setAttribute('id', 'confirm-password-error');
-confirmPasswordError.classList.add('input-error', 'password-input-error');
-confirmPasswordError.setAttribute('aria-live', 'polite');
-confirmPasswordError.style.display = 'none';
-confirmPasswordError.innerText = 'The password must be the same.';
-passConContainer.appendChild(confirmPasswordError);
+const differentPasswordError = document.createElement('div');
+differentPasswordError.setAttribute('id', 'different-password-error');
+differentPasswordError.classList.add('input-error', 'password-input-error');
+differentPasswordError.setAttribute('aria-live', 'polite');
+differentPasswordError.style.display = 'none';
+differentPasswordError.innerText = 'The password must be the same.';
+passConContainer.appendChild(differentPasswordError);
 
 addShowPasswordBtn(passConfShowBtnContainer, confirmPasswordInput);
 
@@ -227,12 +227,14 @@ submitBtn.setAttribute('type', 'submit');
 container.appendChild(submitBtn);
 submitBtn.innerText = 'Confirm';
 
-// form.addEventListener('submit', (e) => {
-// if (!email.validity.valid) {
-//   showError(email, emailError);
-// }
-// e.preventDefault();
-// });
+form.addEventListener('submit', (e) => {
+  inputEvent(emailInput, emailError);
+  inputEvent(countrySelect, countryError);
+  inputEvent(zipCodeInput, zipCodeError);
+  passwordError(passwordInput);
+  confirmPassword(passwordInput, confirmPasswordInput);
+  e.preventDefault();
+});
 
 // Background credit
 const backgroundCredit = document.createElement('a');
