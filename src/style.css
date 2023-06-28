@@ -84,9 +84,9 @@ select:valid {
   box-sizing: border-box;
 }
 
-/* .input-error:last-child {
-  border-radius: 0 0 5px 5px;
-} */
+.password-input-error {
+  text-align: start;
+}
 
 button[type='submit'] {
   width: 10rem;

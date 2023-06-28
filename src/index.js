@@ -1,6 +1,8 @@
 import './style.css';
-import { inputEvent, addShowPasswordBtn, passwordError } from './function';
 import countryOptions from './country-list';
+import {
+  inputEvent, addShowPasswordBtn, passwordError, confirmPassword,
+} from './function';
 
 const body = document.getElementsByTagName('body')[0];
 
@@ -109,6 +111,8 @@ const passwordContainer = document.createElement('div');
 passwordContainer.classList.add('input-container');
 passwordShowBtnContainer.appendChild(passwordContainer);
 
+const regExPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Z0-9]+$';
+
 const passwordInput = document.createElement('input');
 passwordInput.setAttribute('type', 'password');
 passwordInput.setAttribute('id', 'password');
@@ -116,7 +120,7 @@ passwordInput.setAttribute('name', 'password');
 passwordInput.setAttribute('autocomplete', 'new-password');
 passwordInput.setAttribute('minlength', '8');
 passwordInput.setAttribute('maxlength', '16');
-passwordInput.setAttribute('pattern', '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Z0-9]+$/');
+passwordInput.setAttribute('pattern', regExPattern);
 passwordInput.setAttribute('required', '');
 passwordContainer.appendChild(passwordInput);
 
@@ -127,42 +131,50 @@ passwordContainer.appendChild(passwordErrorContainer);
 // All type of error
 const enterPasswordError = document.createElement('div');
 enterPasswordError.setAttribute('id', 'enter-password-error');
-enterPasswordError.classList.add('input-error');
+enterPasswordError.classList.add('input-error', 'password-input-error');
 enterPasswordError.setAttribute('aria-live', 'polite');
 enterPasswordError.style.display = 'none';
-enterPasswordError.innerText = 'You need to enter a Password';
+enterPasswordError.innerText = 'You need to enter a Password.';
 passwordErrorContainer.appendChild(enterPasswordError);
 
 const lowercaseError = document.createElement('div');
 lowercaseError.setAttribute('id', 'lowercase-error');
-lowercaseError.classList.add('input-error');
+lowercaseError.classList.add('input-error', 'password-input-error');
 lowercaseError.setAttribute('aria-live', 'polite');
 lowercaseError.style.display = 'none';
-lowercaseError.innerText = 'It must have at least one lowercase';
+lowercaseError.innerText = 'It must have at least one lowercase.';
 passwordErrorContainer.appendChild(lowercaseError);
 
 const uppercaseError = document.createElement('div');
 uppercaseError.setAttribute('id', 'uppercase-error');
-uppercaseError.classList.add('input-error');
+uppercaseError.classList.add('input-error', 'password-input-error');
 uppercaseError.setAttribute('aria-live', 'polite');
 uppercaseError.style.display = 'none';
-uppercaseError.innerText = 'It must have at least one uppercase';
+uppercaseError.innerText = 'It must have at least one uppercase.';
 passwordErrorContainer.appendChild(uppercaseError);
 
 const numberError = document.createElement('div');
 numberError.setAttribute('id', 'numbers-error');
-numberError.classList.add('input-error');
+numberError.classList.add('input-error', 'password-input-error');
 numberError.setAttribute('aria-live', 'polite');
 numberError.style.display = 'none';
-numberError.innerText = 'It must have at least one numbers';
+numberError.innerText = 'It must have at least one numbers.';
 passwordErrorContainer.appendChild(numberError);
+
+const specialCharactersError = document.createElement('div');
+specialCharactersError.setAttribute('id', 'special-characters-error');
+specialCharactersError.classList.add('input-error', 'password-input-error');
+specialCharactersError.setAttribute('aria-live', 'polite');
+specialCharactersError.style.display = 'none';
+specialCharactersError.innerText = 'Must contain only alphanumeric characters.';
+passwordErrorContainer.appendChild(specialCharactersError);
 
 const tooShortError = document.createElement('div');
 tooShortError.setAttribute('id', 'too-short-error');
-tooShortError.classList.add('input-error');
+tooShortError.classList.add('input-error', 'password-input-error');
 tooShortError.setAttribute('aria-live', 'polite');
 tooShortError.style.display = 'none';
-tooShortError.innerText = 'Must have at least 8 characters';
+tooShortError.innerText = 'Must have at least 8 characters.';
 passwordErrorContainer.appendChild(tooShortError);
 
 addShowPasswordBtn(passwordShowBtnContainer, passwordInput);
@@ -196,14 +208,17 @@ confirmPasswordInput.setAttribute('required', '');
 passConContainer.appendChild(confirmPasswordInput);
 
 const confirmPasswordError = document.createElement('div');
-confirmPasswordError.setAttribute('id', 'zip-error');
+confirmPasswordError.setAttribute('id', 'confirm-password-error');
+confirmPasswordError.classList.add('input-error', 'password-input-error');
 confirmPasswordError.setAttribute('aria-live', 'polite');
+confirmPasswordError.style.display = 'none';
+confirmPasswordError.innerText = 'The password must be the same.';
 passConContainer.appendChild(confirmPasswordError);
 
 addShowPasswordBtn(passConfShowBtnContainer, confirmPasswordInput);
 
 ['click', 'input', 'keydown'].forEach((event) => confirmPasswordInput.addEventListener(event, () => {
-  inputEvent(confirmPasswordInput, confirmPasswordError);
+  confirmPassword(passwordInput, confirmPasswordInput);
 }));
 
 // Submit button
