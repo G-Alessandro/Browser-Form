@@ -1,7 +1,7 @@
 import './style.css';
 import countryOptions from './country-list';
 import {
-  inputEvent, addShowPasswordBtn, passwordError, confirmPassword,
+  inputEvent, addShowPasswordBtn, passwordError, confirmPassword, allValid,
 } from './function';
 
 const body = document.getElementsByTagName('body')[0];
@@ -113,7 +113,7 @@ passwordShowBtnContainer.classList.add('password-show-input-container');
 container.appendChild(passwordShowBtnContainer);
 
 const passwordContainer = document.createElement('div');
-passwordContainer.classList.add('input-container');
+passwordContainer.classList.add('input-container', 'password-input-container');
 passwordShowBtnContainer.appendChild(passwordContainer);
 
 const regExPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Z0-9]+$';
@@ -129,7 +129,7 @@ passwordInput.setAttribute('pattern', regExPattern);
 passwordInput.setAttribute('required', '');
 passwordContainer.appendChild(passwordInput);
 
-// Error container
+// Password error container
 const passwordErrorContainer = document.createElement('div');
 passwordErrorContainer.classList.add('password-error-container');
 passwordContainer.appendChild(passwordErrorContainer);
@@ -238,6 +238,7 @@ form.addEventListener('submit', (e) => {
   inputEvent(zipCodeInput, zipCodeError);
   passwordError(passwordInput);
   confirmPassword(passwordInput, confirmPasswordInput);
+  allValid();
   e.preventDefault();
 });
 

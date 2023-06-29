@@ -25,6 +25,7 @@ body {
 }
 
 .container {
+  position: relative;
   backdrop-filter: blur(3px);
   display: grid;
   width: fit-content;
@@ -32,10 +33,48 @@ body {
   color: white;
   box-shadow: 0rem 0rem 1rem black;
   border-radius: 12px;
-  padding: 2rem;
-  margin-top: 2rem;
+  padding: 2rem 2rem .5rem 2rem;
+  margin-top: 1.5rem;
 }
-  
+
+.congratulations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: .5rem solid #ff9800;
+  border-radius: 12px;
+  background-color: #fceecf;
+}
+
+.congratulations-text, 
+.sign-up-text {
+  font-size: 2rem;
+  color: #ff9800;
+}
+
+.high-five-text {
+  font-size: 1.7rem;
+  color: #78d3d6;
+}
+
+.congratulations-text, 
+.high-five-text {
+  font-weight: 900;
+  margin-top: 1rem;
+}
+
+.high-five-img {
+  margin-top: 1rem;
+  width: 10rem;
+  height: 10rem;
+  background-image: url(./high-five.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
 label {
   margin-bottom: .2rem;
   text-shadow: 0px 0px 10px black;
@@ -78,7 +117,14 @@ select:valid {
   box-shadow: 0rem 0rem .2rem rgb(85, 228, 104);
 }
 
+.password-input-container {
+  position: relative;
+}
+
 .password-error-container {
+  position: absolute;
+  top: 0%;
+  left: -143%;
   margin-bottom: .1rem;
   border-radius: 0 0 5px 5px;
 }
@@ -100,12 +146,14 @@ select:valid {
 
 button[type='submit'] {
   width: 10rem;
+  height: 2rem;
   justify-self: center;
   align-self: center;
   color: white;
   border: .1rem solid #029bf4;
   border-radius: 5px;
   background-color: #2fa7ed;
+  margin-top: 1rem;
 }
 
 button[type='submit']:hover {

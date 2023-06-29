@@ -120,6 +120,48 @@ function inputEvent(input, inputError) {
   }
 }
 
+function allValid() {
+  const emailId = document.getElementById('email');
+  const countryId = document.getElementById('country');
+  const zipId = document.getElementById('zip');
+  const passwordId = document.getElementById('password');
+  const confirmPasswordId = document.getElementById('confirm-password');
+  const container = document.getElementsByClassName('container')[0];
+  if (emailId.validity.valid
+      && countryId.validity.valid
+      && zipId.validity.valid
+      && passwordId.validity.valid
+      && confirmPasswordId.validity.valid) {
+    const congratulations = document.createElement('div');
+    congratulations.classList.add('congratulations');
+    container.appendChild(congratulations);
+
+    const divTextCongratulations = document.createElement('div');
+    divTextCongratulations.classList.add('congratulations-text');
+    congratulations.appendChild(divTextCongratulations);
+    divTextCongratulations.innerText = 'Congratulations';
+
+    const divTextSignUp = document.createElement('div');
+    divTextSignUp.classList.add('sign-up-text');
+    congratulations.appendChild(divTextSignUp);
+    divTextSignUp.innerText = 'You Signed Up';
+
+    const divTextHighFive = document.createElement('div');
+    divTextHighFive.classList.add('high-five-text');
+    congratulations.appendChild(divTextHighFive);
+    divTextHighFive.innerText = 'High Five';
+
+    const divImgHighFive = document.createElement('div');
+    divImgHighFive.classList.add('high-five-img');
+    congratulations.appendChild(divImgHighFive);
+    divImgHighFive.style.backgroundImage = 'url(./high-five.png)';
+
+    setTimeout(() => {
+      congratulations.remove();
+    }, 3000);
+  }
+}
+
 export {
-  inputEvent, addShowPasswordBtn, passwordError, confirmPassword,
+  inputEvent, addShowPasswordBtn, passwordError, confirmPassword, allValid,
 };
